@@ -1,0 +1,29 @@
+def largest_prime_factor(n):
+    # Initialize the largest prime factor
+    largest_factor = None
+    
+    # Check for divisibility by 2 first
+    while n % 2 == 0:
+        largest_factor = 2
+        n //= 2
+    
+    # Check for odd factors from 3 onwards
+    factor = 3
+    while factor * factor <= n:
+        while n % factor == 0:
+            largest_factor = factor
+            n //= factor
+        factor += 2
+    
+    # If n is still greater than 2, it is a prime factor
+    if n > 2:
+        largest_factor = n
+    
+    return largest_factor
+
+# Input handling
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = largest_prime_factor(n)
+    print(result)
