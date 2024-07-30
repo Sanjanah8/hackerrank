@@ -1,0 +1,49 @@
+def is_palindrome(num):
+    return str(num) == str(num)[::-1]
+
+def largest_palindrome_less_than(limit):
+    max_palindrome = -1
+    
+    for i in range(999, 99, -1):
+        for j in range(i, 99, -1):  # j starts at i to avoid repeat calculations
+            product = i * j
+            if product < limit and is_palindrome(product):
+                max_palindrome = max(max_palindrome, product)
+    
+    return max_palindrome
+
+# Input handling
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = largest_palindrome_less_than(n)
+    print(result)
+
+#(Optimized code)#
+
+def is_palindrome(num):
+    s = str(num)
+    return s == s[::-1]
+
+def largest_palindrome_less_than(limit):
+    max_palindrome = -1
+    
+    for i in range(999, 99, -1):
+        if i * 999 < max_palindrome:  # Early exit if maximum possible product is already smaller
+            break
+        for j in range(i, 99, -1):
+            product = i * j
+            if product < max_palindrome:
+                break  # No need to check further if product is less than current max_palindrome
+            if product < limit and is_palindrome(product):
+                max_palindrome = product
+    
+    return max_palindrome
+
+# Input handling
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = largest_palindrome_less_than(n)
+    print(result)
+
