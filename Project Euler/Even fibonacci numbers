@@ -1,0 +1,17 @@
+def sum_even_fibonacci(n):
+    a, b = 1, 2
+    sum_even = 0
+    
+    while a <= n:
+        if a % 2 == 0:
+            sum_even += a
+        a, b = b, a + b
+    
+    return sum_even
+
+# Input handling
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = sum_even_fibonacci(n)
+    print(result)
