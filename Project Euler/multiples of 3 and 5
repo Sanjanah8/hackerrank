@@ -1,0 +1,23 @@
+import sys
+def sum_of_multiples(n):
+    def sum_of_divisible_by(x):
+        # Find the number of terms divisible by x
+        p = (n - 1) // x
+        # Use the formula for the sum of an arithmetic series
+        return x * p * (p + 1) // 2
+    
+    # Sum of multiples of 3
+    sum_3 = sum_of_divisible_by(3)
+    # Sum of multiples of 5
+    sum_5 = sum_of_divisible_by(5)
+    # Sum of multiples of 15 (to be subtracted to correct double counting)
+    sum_15 = sum_of_divisible_by(15)
+    
+    return sum_3 + sum_5 - sum_15
+
+# Input handling
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = sum_of_multiples(n)
+    print(result)
